@@ -19,7 +19,6 @@ const (
 func LoggerInfo(message interface{}) {
 	fmt.Println(colorCyan)
 	log.Println(colorCyan, "[ INFO ] => "+fmt.Sprint(message)+".")
-	log.Println(colorCyan, "========== End Of Info Message ==========")
 	fmt.Println(colorCyan)
 }
 
@@ -41,7 +40,7 @@ func LoggerSuccess(message interface{}) {
 func LoggerError(err error) {
 	if err != nil {
 		fmt.Println(colorRed)
-		log.Println(colorRed, "[ SUCCESS ] => "+err.Error()+".")
+		log.Println(colorRed, "[ ERROR ] => "+err.Error()+".")
 		fmt.Println(colorRed)
 	}
 }
@@ -49,6 +48,6 @@ func LoggerError(err error) {
 //this is for logger debug level
 func LoggerDebug(msg interface{}) {
 	fmt.Println(colorPurple)
-	log.Println(colorPurple, "[ SUCCESS ] => "+fmt.Sprint(msg)+".")
+	log.Println(colorPurple, "[ DEBUG ] => "+fmt.Sprint(msg)+".")
 	fmt.Println(colorPurple)
 }
