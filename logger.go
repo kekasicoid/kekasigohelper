@@ -19,21 +19,21 @@ const (
 func LoggerInfo(message interface{}) {
 	fmt.Println(colorCyan)
 	log.Println(colorCyan, "[ INFO ] => "+fmt.Sprint(message)+".")
-	fmt.Println(colorCyan)
+	fmt.Println(colorWhite)
 }
 
 //this is for logger warning level
 func LoggerWarning(message interface{}) {
 	fmt.Println(colorYellow)
 	log.Println(colorYellow, "[ WARNING ] => "+fmt.Sprint(message)+".")
-	fmt.Println(colorYellow)
+	fmt.Println(colorWhite)
 }
 
 //this is for logger success level
 func LoggerSuccess(message interface{}) {
 	fmt.Println(colorGreen)
 	log.Println(colorGreen, "[ SUCCESS ] => "+fmt.Sprint(message)+".")
-	fmt.Println(colorGreen)
+	fmt.Println(colorWhite)
 }
 
 //this is for logger error level
@@ -41,7 +41,7 @@ func LoggerError(err error) {
 	if err != nil {
 		fmt.Println(colorRed)
 		log.Println(colorRed, "[ ERROR ] => "+err.Error()+".")
-		fmt.Println(colorRed)
+		fmt.Println(colorWhite)
 	}
 }
 
@@ -49,5 +49,12 @@ func LoggerError(err error) {
 func LoggerDebug(msg interface{}) {
 	fmt.Println(colorPurple)
 	log.Println(colorPurple, "[ DEBUG ] => "+fmt.Sprint(msg)+".")
-	fmt.Println(colorPurple)
+	fmt.Println(colorWhite)
+}
+
+//this is for logger fatal level
+func LoggerFatal(msg interface{}) {
+	fmt.Println(colorRed)
+	log.Fatal(colorRed, "[ FATAL ] => "+fmt.Sprint(msg)+".")
+	fmt.Println(colorWhite)
 }
