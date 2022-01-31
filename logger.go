@@ -16,6 +16,11 @@ const (
 )
 
 //this is for logger info level
+func LoggerMiddL(message interface{}) {
+	log.Println(colorWhite, "[ REQ ] => "+fmt.Sprint(message)+".")
+}
+
+//this is for logger info level
 func LoggerInfo(message interface{}) {
 	log.Println(colorCyan, "[ INFO ] => "+fmt.Sprint(message)+".")
 }
