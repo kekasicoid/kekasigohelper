@@ -17,16 +17,12 @@ const (
 
 //this is for logger info level
 func LoggerInfo(message interface{}) {
-	fmt.Println(colorCyan)
 	log.Println(colorCyan, "[ INFO ] => "+fmt.Sprint(message)+".")
-	fmt.Println(colorWhite)
 }
 
 //this is for logger warning level
 func LoggerWarning(message interface{}) {
-	fmt.Println(colorYellow)
 	log.Println(colorYellow, "[ WARNING ] => "+fmt.Sprint(message)+".")
-	fmt.Println(colorWhite)
 }
 
 //this is for logger success level
