@@ -42,6 +42,11 @@ func LoggerError(err error) {
 	}
 }
 
+//this is for logger error level
+func LoggerErrorCustom(message interface{}) {
+	log.Println(colorRed, "[ ERROR ] => "+fmt.Sprint(message)+".")
+}
+
 //this is for logger debug level
 func LoggerDebug(msg interface{}) {
 	log.Println(colorPurple, "[ DEBUG ] => "+fmt.Sprint(msg)+".")
