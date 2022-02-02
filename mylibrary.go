@@ -1,6 +1,9 @@
 package kekasigohelper
 
-import "strings"
+import (
+	"net/http"
+	"strings"
+)
 
 func InArray(str string, list []string) bool {
 	str = strings.ToLower(str)
@@ -10,4 +13,23 @@ func InArray(str string, list []string) bool {
 		}
 	}
 	return false
+}
+func GetStatusCode(err error) int {
+	if err == nil {
+		return http.StatusOK
+	}
+	switch err {
+	case ErrInternalServerError:
+		return http.StatusInternalServerError
+	case ErrForbidden:
+		return http.StatusForbidden
+	case ErrNotFound:
+		return http.StatusNotFound
+	case ErrUnAuthorize:
+		return http.StatusUnauthorized
+	case ErrBadParamInput:
+		return http.StatusBadRequest
+	default:
+		return http.StatusInternalServerError
+	}
 }
