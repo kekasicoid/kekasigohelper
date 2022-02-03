@@ -1,6 +1,7 @@
 package kekasigohelper
 
 import (
+	b64 "encoding/base64"
 	"math/rand"
 	"net/http"
 	"strings"
@@ -66,4 +67,17 @@ func GetStatusCode(err error) int {
 	default:
 		return http.StatusInternalServerError
 	}
+}
+
+func Encrypt64(stringToEncrypt string) (encryptedString string) {
+	res := b64.StdEncoding.EncodeToString([]byte(stringToEncrypt))
+	return res
+}
+
+func Decrypt64(encryptedString string, keyString string) (decryptedString string, err error) {
+	res, err := b64.StdEncoding.DecodeString(encryptedString)
+	if err != nil {
+		return "", ErrGeneralMessage
+	}
+	return string(res), nil
 }
