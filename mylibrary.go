@@ -2,6 +2,7 @@ package kekasigohelper
 
 import (
 	b64 "encoding/base64"
+	"encoding/json"
 	"math/rand"
 	"net/http"
 	"strings"
@@ -80,4 +81,9 @@ func Decrypt64(encryptedString string, keyString string) (decryptedString string
 		return "", ErrGeneralMessage
 	}
 	return string(res), nil
+}
+
+func ObjectToString(kks interface{}) string {
+	res, _ := json.Marshal(kks)
+	return string(res)
 }
