@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func anyToString(value interface{}) string {
+func AnyToString(value interface{}) string {
 	switch v := value.(type) {
 	case string:
 		return v
