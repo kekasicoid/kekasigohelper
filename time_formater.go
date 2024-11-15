@@ -18,3 +18,8 @@ func DateDiffMonth(startDate string, endDate string) (month float64, err error) 
 	}
 	return float64(end.Sub(start).Hours() / 24 / 30), nil
 }
+
+func DateDiffMidnight(now time.Time) time.Duration {
+	midnight := time.Date(now.Year(), now.Month(), now.Day(), 23, 59, 59, 0, now.Location())
+	return time.Until(midnight)
+}
