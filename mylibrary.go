@@ -87,3 +87,18 @@ func ObjectToString(kks interface{}) string {
 	res, _ := json.Marshal(kks)
 	return string(res)
 }
+
+func HasDuplicateIntArray(nums []int) bool {
+	seen := make(map[int]bool)
+
+	for _, num := range nums {
+		if seen[num] {
+			// Duplicate found
+			return true
+		}
+		seen[num] = true
+	}
+
+	// No duplicates found
+	return false
+}
