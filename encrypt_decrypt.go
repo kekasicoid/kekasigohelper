@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"io"
+	"strings"
 )
 
 // PadKey memastikan kunci sesuai dengan ukuran AES
@@ -47,7 +48,15 @@ func Encrypt(plainText, secretKey string) (string, error) {
 // Decrypt menggunakan AES-GCM dengan secret key
 func Decrypt(cipherText, secretKey string) (string, error) {
 	key := PadKey(secretKey)
-	data, err := base64.URLEncoding.DecodeString(cipherText)
+
+	// Remove any invalid characters (if known issues like spaces or newlines)
+	base64Str := strings.TrimSpace(cipherText)
+	// Add padding if necessary
+	if len(base64Str)%4 != 0 {
+		base64Str += strings.Repeat("=", 4-(len(base64Str)%4))
+	}
+
+	data, err := base64.URLEncoding.DecodeString(base64Str)
 	if err != nil {
 		return "", err
 	}
