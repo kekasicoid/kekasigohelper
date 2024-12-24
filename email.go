@@ -28,3 +28,12 @@ func IsEmailValid(email string) error {
 
 	return nil
 }
+
+func IsEmailDomainEqual(companyEmail, newUserEmail string) bool {
+	companyEmailDomain := companyEmail[strings.LastIndex(companyEmail, "@"):]
+	newUserEmailDomain := newUserEmail[strings.LastIndex(newUserEmail, "@"):]
+	if companyEmailDomain != newUserEmailDomain {
+		return false
+	}
+	return true
+}

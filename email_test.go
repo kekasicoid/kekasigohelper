@@ -7,3 +7,9 @@ func TestIsEmailValid(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestIsEmailDomainEqual(t *testing.T) {
+	if IsEmailDomainEqual("info@kekasi.co.id", "arditya@kekasi.co.id") {
+		LoggerInfo("Email domain is equal")
+	}
+}
