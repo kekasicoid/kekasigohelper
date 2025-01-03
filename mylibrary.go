@@ -102,3 +102,11 @@ func HasDuplicateIntArray(nums []int) bool {
 	// No duplicates found
 	return false
 }
+
+func OnlyOneRemove(str string, remove string) string {
+	count := strings.Count(str, remove)
+	if count == 1 {
+		return strings.Replace(str, remove, "", 1)
+	}
+	return str
+}
