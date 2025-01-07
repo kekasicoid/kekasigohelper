@@ -110,3 +110,17 @@ func OnlyOneRemove(str string, remove string) string {
 	}
 	return str
 }
+
+func RemoveDuplicates(input []int) []int {
+    uniqueMap := make(map[int]bool)
+    var result []int
+
+    for _, value := range input {
+        if !uniqueMap[value] {
+            uniqueMap[value] = true
+            result = append(result, value)
+        }
+    }
+
+    return result
+}
