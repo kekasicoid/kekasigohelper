@@ -112,15 +112,22 @@ func OnlyOneRemove(str string, remove string) string {
 }
 
 func RemoveDuplicates(input []int) []int {
-    uniqueMap := make(map[int]bool)
-    var result []int
+	uniqueMap := make(map[int]bool)
+	var result []int
 
-    for _, value := range input {
-        if !uniqueMap[value] {
-            uniqueMap[value] = true
-            result = append(result, value)
-        }
-    }
+	for _, value := range input {
+		if !uniqueMap[value] {
+			uniqueMap[value] = true
+			result = append(result, value)
+		}
+	}
 
-    return result
+	return result
+}
+
+func ReverseSlice[T any](s []T) []T {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+	return s
 }
