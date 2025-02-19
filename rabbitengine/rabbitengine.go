@@ -79,7 +79,7 @@ func (p RabbitMQ) ConnConfig() *ConnectionConfig {
 }
 
 // NewConnection returns the new connection object
-func NewConnection(name string, conf RabbitMQ, exchange *ExchangeConfig, queues []*QueueConfig, args map[string]interface{}) *Connection {
+func NewConnection(name string, conf *RabbitMQ, exchange *ExchangeConfig, queues []*QueueConfig, args map[string]interface{}) *Connection {
 	c := &Connection{
 		name:     name,
 		exchange: exchange,
