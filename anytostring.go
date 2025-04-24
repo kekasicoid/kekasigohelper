@@ -18,3 +18,8 @@ func AnyToString(value interface{}) string {
 		return fmt.Sprintf("%v", v) // Fallback to fmt for other types
 	}
 }
+
+// FloatToString converts a float64 to a string with the specified precision
+func FloatToString(value float64, precision int) string {
+	return fmt.Sprintf("%.*f", precision, value)
+}
