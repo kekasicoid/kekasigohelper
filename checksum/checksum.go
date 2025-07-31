@@ -9,6 +9,7 @@ import (
 )
 
 func GetAllTables(db *sql.DB) ([]string, error) {
+	log.Println("Fetching all tables from the database")
 	rows, err := db.Query("SHOW TABLES")
 	if err != nil {
 		return nil, err
@@ -23,11 +24,13 @@ func GetAllTables(db *sql.DB) ([]string, error) {
 		}
 		tables = append(tables, name)
 	}
+	log.Println("Tables found :", len(tables))
 	return tables, nil
 }
 
 func ChecksumTable(db *sql.DB, table string) (string, error) {
 	query := fmt.Sprintf("SELECT * FROM `%s`", table)
+	log.Println("Executing checksum for ", table, " : ", query)
 	rows, err := db.Query(query)
 	if err != nil {
 		return "", err
@@ -51,8 +54,9 @@ func ChecksumTable(db *sql.DB, table string) (string, error) {
 			hasher.Write(val)
 		}
 	}
-
-	return hex.EncodeToString(hasher.Sum(nil)), nil
+	sum := hex.EncodeToString(hasher.Sum(nil))
+	log.Println("Checksum for table", table, "is", sum)
+	return sum, nil
 }
 
 func ChecksumAllTables(db *sql.DB) map[string]string {
@@ -60,7 +64,7 @@ func ChecksumAllTables(db *sql.DB) map[string]string {
 
 	tables, err := GetAllTables(db)
 	if err != nil {
-		log.Println("Error getting tables:", err)
+		log.Println("Error getting tables : ", err)
 		return results
 	}
 
