@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"math/rand"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 	"unsafe"
@@ -130,4 +131,19 @@ func ReverseSlice[T any](s []T) []T {
 		s[i], s[j] = s[j], s[i]
 	}
 	return s
+}
+
+func ReadJSONFile[T any](filename string) (*T, error) {
+	file, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	var data T
+	decoder := json.NewDecoder(file)
+	if err := decoder.Decode(&data); err != nil {
+		return nil, err
+	}
+	return &data, nil
 }

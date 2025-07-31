@@ -24,7 +24,7 @@ func GetAllTables(db *sql.DB) ([]string, error) {
 		}
 		tables = append(tables, name)
 	}
-	log.Println("Tables found :", len(tables))
+	log.Println("Tables found :", len(tables), "\n")
 	return tables, nil
 }
 
