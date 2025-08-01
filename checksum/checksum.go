@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"log"
+	"time"
 )
 
 func GetAllTables(db *sql.DB) ([]string, error) {
@@ -29,6 +30,7 @@ func GetAllTables(db *sql.DB) ([]string, error) {
 }
 
 func ChecksumTable(db *sql.DB, table string) (string, error) {
+	start := time.Now()
 	query := fmt.Sprintf("SELECT * FROM `%s`", table)
 	log.Println("Executing checksum for ", table, " : ", query)
 	rows, err := db.Query(query)
@@ -55,7 +57,8 @@ func ChecksumTable(db *sql.DB, table string) (string, error) {
 		}
 	}
 	sum := hex.EncodeToString(hasher.Sum(nil))
-	log.Println("Checksum for table", table, "is", sum)
+	duration := time.Since(start)
+	log.Println("Checksum for table", table, "is", sum, " | ", duration)
 	return sum, nil
 }
 
