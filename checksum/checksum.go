@@ -47,7 +47,7 @@ func ChecksumTable(db *sql.DB, table string) (string, error) {
 	}
 
 	hasher := md5.New()
-
+	no := 0
 	for rows.Next() {
 		if err := rows.Scan(scanArgs...); err != nil {
 			return "", err
@@ -55,10 +55,12 @@ func ChecksumTable(db *sql.DB, table string) (string, error) {
 		for _, val := range values {
 			hasher.Write(val)
 		}
+		no++
 	}
+
 	sum := hex.EncodeToString(hasher.Sum(nil))
 	duration := time.Since(start)
-	log.Println("Checksum for table", table, "is", sum, " | ", duration)
+	log.Println("Checksum for table", table, "is", sum, " | Rows processed : ", no, " | ", duration)
 	return sum, nil
 }
 
