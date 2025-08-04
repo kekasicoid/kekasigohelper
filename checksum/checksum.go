@@ -95,7 +95,7 @@ func ChecksumAllTablesMySQL(db *sql.DB) map[string]string {
 	}
 
 	for _, table := range tables {
-		sum, err := ChecksumTable(db, table)
+		sum, err := ChecksumTableMySQL(db, table)
 		if err != nil {
 			log.Printf("Error checksumming table %s: %v\n", table, err)
 			continue
