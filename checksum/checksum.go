@@ -134,3 +134,19 @@ func ChecksumTableMySQL(db *sql.DB, table string) (string, error) {
 	log.Println("Checksum for table", table, "is", sum, " | ", duration)
 	return sum, nil
 }
+
+func CountRowsMySQL(db *sql.DB, table string) (int64, error) {
+	start := time.Now()
+	query := fmt.Sprintf("SELECT COUNT(*) FROM `%s`", table)
+	log.Println("Executing count for ", table, " : ", query)
+	row := db.QueryRow(query)
+
+	var count int64
+	if err := row.Scan(&count); err != nil {
+		return 0, err
+	}
+
+	duration := time.Since(start)
+	log.Println("Count for table", table, "is", count, "|", duration)
+	return count, nil
+}
