@@ -147,3 +147,12 @@ func ReadJSONFile[T any](filename string) (*T, error) {
 	}
 	return &data, nil
 }
+
+func InArrayGeneric[T comparable](val T, arr []T) bool {
+    for _, item := range arr {
+        if item == val {
+            return true
+        }
+    }
+    return false
+}
