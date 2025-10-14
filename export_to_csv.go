@@ -49,7 +49,10 @@ func ExportToCSVDelimiter(outputFile string, headers []string, record [][]string
 	writer := csv.NewWriter(file)
 
 	if delimeter != "" {
-		writer.Comma = delimeter
+		runes := []rune(delimeter)
+		if len(runes) > 0 {
+			writer.Comma = runes[0]
+		}
 	}
 
 	defer writer.Flush()
