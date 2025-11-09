@@ -159,11 +159,11 @@ func InArrayGeneric[T comparable](val T, arr []T) bool {
 
 func GetTimeAddMinutes(addMinute int) string {
     // Get current time
-    currentTime := time.Now()
-    
-    // Add 5 minutes
-    newTime := currentTime.Add(addMinute * time.Minute)
-    
-    // Format as HH:MM
-    return newTime.Format("15:04")
+	currentTime := time.Now()
+	
+	// Add minutes
+	newTime := currentTime.Add(time.Duration(addMinute) * time.Minute)
+	
+	// Format as HH:MM
+	return newTime.Format("15:04")
 }
